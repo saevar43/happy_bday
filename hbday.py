@@ -178,7 +178,7 @@ def dining_room():
             kitchen_2()
         elif "kitchen" in choice and water_on == False:
             kitchen_2()
-        elif "turn off water" and crank_wheel == True and water_on == True:
+        elif "turn off water" in choice and crank_wheel == True and water_on == True:
             print "-" * 60
             print "You use the crank wheel to turn off the water!"
             water_on = False
