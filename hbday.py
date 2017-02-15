@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # An interactive fiction based on 'Happy Birthday' from Resident Evil 7.
 # Author: Sævar Ingi Sigurðsson
 
@@ -33,7 +34,7 @@ def rules():
     print "For example: \"eat fish\" is better than \"eat the little fish\"."
     print "To move between rooms, type then name of the room."
     print "You can only move to adjacent rooms."
-    print "For example: \"go to kitchen\" works \"go left\" does not."
+    print "For example: \"go to kitchen\" works, \"go left\" does not."
     print "\n"
     print "Commands:"
     print "\"rules\": Show this text again."
@@ -145,12 +146,12 @@ def dining_room():
 
         choice = raw_input('> ')
 
-        if "take key" in choice and key == False:
+        if ("take key" in choice or "pick up key" in choice) and key == False:
             print "-" * 60
             print "You take the key from the barrel. Oil starts spilling everywhere!"
             key = True
             oil_floor = True
-        elif "open lock" in choice and finger == False and lock1_open == False:
+        elif ("open lock" in choice or "open box" in choice) and finger == False and lock1_open == False:
             print "#" * 60
             print "What is the passcode? (seperate by commas)"
             print "#" * 60
@@ -165,7 +166,7 @@ def dining_room():
             else:
                 print "-" * 60
                 print "The box is locked. You step back."
-        elif "open lock" in choice and lock1_open == True:
+        elif ("open lock" in choice or "open box" in choice) and lock1_open == True:
             print "-" * 60
             print "The box is unlocked and empty."
         elif "candle on the cake" in choice and candle_lit == False:
@@ -178,7 +179,7 @@ def dining_room():
             kitchen_2()
         elif "kitchen" in choice and water_on == False:
             kitchen_2()
-        elif "turn off water" in choice and crank_wheel == True and water_on == True:
+        elif ("turn off water" in choice or "use crank" in choice) and crank_wheel == True and water_on == True:
             print "-" * 60
             print "You use the crank wheel to turn off the water!"
             water_on = False
@@ -225,20 +226,23 @@ def kitchen_2():
             parlor()
         elif "dining room" in choice:
             dining_room()
-        elif "light stove" in choice and stove_on == False:
+        elif ("light stove" in choice or "turn on stove" in choice) and stove_on == False:
             print "-" * 60
             print "You turn on the stove."
             stove_on = True
-        elif "light stove" in choice and stove_on == True:
+        elif ("light stove" in choice or "turn on stove" in choice) and stove_on == True:
             print "-" * 60
             print "The stove is clearly on...there's fire and everything!"
         elif "light candle" in choice and stove_on == False:
             print "-" * 60
             print "The stove is off, how are you going to light your candle with it?"
-        elif "light candle" in choice and stove_on == True:
+        elif "light candle" in choice and stove_on == True and candle_lit == False:
             print "-" * 60
             print "You light your candle!"
             candle_lit = True
+        elif "light candle" in choice and stove_on == True and candle_lit == True:
+            print "-" * 60
+            print "Your candle is already lit. How can you not see that?!"
         elif "inflate balloon" in choice and balloon == True:
             print "-" * 60
             print "You inflate the balloon until it pops!"
@@ -358,7 +362,7 @@ def clown():
 
         choice = raw_input('> ')
 
-        if "wind up" in choice and key == True and finger_on == True and quill_in == True:
+        if ("wind up" in choice or "use key" in choice) and key == True and finger_on == True and quill_in == True:
             print "-" * 60
             print "The clown grabs your arm and starts writing!"
             print "It's writing into your skin! You scream in pain!"
@@ -366,12 +370,12 @@ def clown():
             print "Laughing, the clown releases you and shuts down. Your arm hurts like hell."
             print "-" * 60
             entrance()
-        elif "wind up" in choice and key == True and finger_on == True:
+        elif ("wind up" in choice or "use key" in choice) and key == True and finger_on == True:
             print "-" * 60
             print "You use the key to wind up the clown."
             print "It moves its hand and laughs like it is writing something funny."
             print "But nothing else happens."
-        elif "wind up" in choice and key == True:
+        elif ("wind up" in choice or "use key" in choice) and key == True:
             print "-" * 60
             print "You use the key to wind up the clown."
             print "It moves its hand and laughs like it is writing something funny."
@@ -390,7 +394,7 @@ def clown():
             print "You place the quill in the clowns hand."
             quill = False
             quill_in = True
-        elif "leave" in choice:
+        elif "leave" in choice or "entrance" in choice:
             print "-" * 60
             print "You leave the clown alone for now."
             entrance()
@@ -446,7 +450,7 @@ def parlor():
             print "The rope is keeping the door shut. If only you could get rid of it."
         elif "burn rope" in choice and candle_lit == True and rope_on == True:
             print "-" * 60
-            print "You use the candle to burn the rope! The door is now open."
+            print "You use the candle to burn the rope! You can now open the door."
             rope_on = False
         elif "burn rope" in  choice and candle_lit == False:
             print "-" * 60
@@ -456,7 +460,7 @@ def parlor():
             print "The rope is too strong for you to cut it or rip it."
         elif "monitors" in choice and "telescope" in choice and telescope == True:
             print "-" * 60
-            print "Looking at the monitors through the telescope you see something!"
+            print "Looking at the monitors through the telescope you see some symbols!"
             print "On the left monitor there is a picture of a crow."
             print "On the middle monitor there is a picture of a bell tower."
             print "On the right monitor there is a picture of a willow."
@@ -540,7 +544,7 @@ def balloon_hall():
 def crank_room():
     print "-" * 60
     print "You have found the entrance to the room with the crank wheel!"
-    print "Do you want to take it?"
+    print "Do you want to take the wheel?"
     print "-" * 60
 
     global crank_wheel
