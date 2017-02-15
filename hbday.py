@@ -362,7 +362,7 @@ def clown():
             print "-" * 60
             print "The clown grabs your arm and starts writing!"
             print "It's writing into your skin! You scream in pain!"
-            print "LOSER"
+            print "L O S E R"
             print "Laughing, the clown releases you and shuts down. Your arm hurts like hell."
             print "-" * 60
             entrance()
@@ -492,7 +492,7 @@ def parlor():
 def balloon_hall():
     print "-" * 60
     print "You find yourself in a hallway filled with gray balloons."
-    print ""
+    print "You feel like they're here to hide something."
     print "At the far end is a locked door. Its lock needs a five letter code."
 
     global balloon
@@ -511,10 +511,10 @@ def balloon_hall():
             balloon = True
         elif "open lock" in choice and lock2_open == False:
             print "#" * 60
-            print "What is the password? (5 letters)"
+            print "What is the password? (5 letters, seperated by whitespace)"
             print "#" * 60
             password  = raw_input('> ')
-            if password == "LOSER":
+            if password == "L O S E R":
                 print "-" * 60
                 print "The lock opens. You can open the door."
                 lock2_open = True
